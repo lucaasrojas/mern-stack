@@ -5,7 +5,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MainPage from './components/MainPage'
 
-import './css/general.scss'
+//import './styles/general.css'
 
 class App extends Component {
     render() {
@@ -34,7 +34,3 @@ class App extends Component {
 }
 
 render(<App/>, document.getElementById('app'))
-
-const navbar_wrapper = {
-
-}

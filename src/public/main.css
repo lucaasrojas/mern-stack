@@ -1,0 +1,4 @@
+.footer_wrapper, .mainpage_wrapper {
+    display: grid;
+    grid-template-columns: auto minmax(790px, 1170px) auto;
+}
