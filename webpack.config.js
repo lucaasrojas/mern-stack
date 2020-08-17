@@ -1,9 +1,10 @@
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry: './src/app/index.js',
     output: {
-        path: __dirname + '/public/',
+        path: path.resolve(__dirname,'public/'),
         filename: 'bundle.js'
     },
     module: {
@@ -12,7 +13,20 @@ module.exports = {
                 loader: 'babel-loader',
                 test: /\.js$/,
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(css|sass|scss)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
-    }
+    },
+    plugins:[
+        new MiniCssExtractPlugin({
+            filename: 'styles.css'
+        })
+    ]
 }

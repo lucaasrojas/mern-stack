@@ -5,7 +5,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MainPage from './components/MainPage'
 
-//import './styles/general.css'
+import './styles/general.scss'
 
 class App extends Component {
     render() {

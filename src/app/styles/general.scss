@@ -1,3 +1,8 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+}
+
 .footer_wrapper, .mainpage_wrapper {
     display: grid;
     grid-template-columns: auto minmax(790px, 1170px) auto;
