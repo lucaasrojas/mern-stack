@@ -5,8 +5,9 @@ const Footer = () => {
         <div
             className={'footer_wrapper'}
             style={{
-                border: 'solid black 2px',
                 padding: '1em',
+                backgroundColor: '#3A2BA2',
+                color: '#E8E6FC'
             }}
         >
             <h1>Footer</h1>

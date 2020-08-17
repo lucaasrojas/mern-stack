@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 const Navbar = () => {
     return (
         <div
         style={{
-            border: 'solid green 2px',
-            padding: '1em'
+            padding: '1em',
+            backgroundColor: '#3A2BA2',
+            color: '#E8E6FC'
         }}
     >
-            <h1>Navbar</h1>
+            <h1>MERN Stack</h1>
         </div>
     )
 }

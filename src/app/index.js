@@ -13,8 +13,9 @@ class App extends Component {
             <div
                 style={{
                     display: 'grid',
-                    gridTemplateRows: '10vh auto 12vh',
-                    height: '100vh'
+                    gridTemplateRows: '10vh auto 15vh',
+                    height: '100vh',
+                    width: '100vw'
                 }}
             >
                 <Navbar
@@ -25,7 +26,9 @@ class App extends Component {
                 <MainPage />
                 <Footer
                     style={{
-                        gridRow: '3'
+                        gridRow: '3',
+                        display: 'grid',
+                        gridTemplateColumns: 'auto minmax(785px,1170px) auto'
                     }}
                 />
             </div>
