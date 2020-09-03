@@ -1,20 +1,16 @@
 import React from 'react'
 
 export default function TaskList(props) {
-    const { tasks } = props
+    const { tasks, deleteTask } = props
+
     return (
-        <div>
-            <ul
-                style={{
-                    listStyleType: 'none',
-                    paddingLeft: 0,
-                    margin: 0
-                }}
-            >
-                {tasks.length > 0 && tasks.map(task => (
-                    <li><h2>{task.title} - {task.description}</h2></li>
-                ))}
-            </ul>
+        <div className={'task_list'}>            
+            {tasks.length > 0 && tasks.map(task => (
+                <div>
+                    <span onClick={()=>{deleteTask(task)}}>X</span>
+                    <p>{task.title} - {task.description}</p>
+                </div>
+            ))}
         </div>
     )
 }

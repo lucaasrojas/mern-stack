@@ -6,15 +6,16 @@ export default function MainPage() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tasks, setTasks] = useState([]);
+    const [loaded, setLoaded] = useState(false)
 
     const saveData = (e) => {
         e.preventDefault()
-        console.log("saveData", title, description)
         const task = {title, description}
         axios.post('/api/tasks', task)
             .then(res => {
-                console.log('OK', res)
                 getTasks()
+                setTitle('')
+                setDescription('')
             })
             .catch(err => console.error('ERR', err))
     }
@@ -22,9 +23,16 @@ export default function MainPage() {
     const getTasks = () => {
         axios.get('/api/tasks')
             .then(res => {
-                console.log("GET OK", res.data.response)
                 setTasks(res.data.response)
+                setLoaded(true)
             })
+    }
+
+    const deleteTask = (e) =>{
+        axios.delete(`/api/tasks/${e._id}`)
+        .then(res => {
+            getTasks()
+        })
     }
 
     const handleChange = (e) => {
@@ -34,45 +42,37 @@ export default function MainPage() {
 
     useEffect(() => {
         // Actualiza el título del documento usando la API del navegador
-        tasks.length === 0 && getTasks()
+        (tasks.length === 0 || !loaded) && getTasks()
     });
 
     return (
         <div
             className={'mainpage_wrapper'}
-            style={{
-                padding: '1em',
-                backgroundColor: '#E8E6FC',
-                display: 'grid',
-                gridTemplateColumns: 'auto minmax(785px,1170px) auto'
-            }}
+            
         >
-            <div
-                style={{
-                    gridColumn: '2',
-                    display:'grid',
-                    gridTemplateColumns: '1fr 1fr'
-                }}
-            >
-                <div
-                    style={{
-                        gridColumn: '1'
-                    }}
-                >
-                    <form onSubmit={saveData}>
-                        <input type='text' name="title" placeholder='Enter title' onChange={handleChange}></input>
-                        <input type='text' name="description" placeholder='Enter description' onChange={handleChange}></input>
-                        <button type='submit'>Save</button>
-                    </form>
+            
+                <div className="form_wrapper">
+                    <div className="form_input">
+                        <input type='text' name="title" autoComplete="off" onChange={handleChange} value={title}></input>
+                        <label for="title">
+                            <span>Title</span>
+                        </label>
+                    </div>
+
+                    <div className="form_input">
+
+                        <input type='text' name="description" autoComplete="off" onChange={handleChange} value={description}></input>
+                        <label for="description">
+                            <span>Description</span>
+                        </label>
+                        
+                    </div>
+                    <div className="button_wrapper">
+                        <button type='submit' onClick={saveData}>Save</button>
+                    </div>
+                    
                 </div>
-                <div
-                    style={{
-                        gridColumn: '2'
-                    }}
-                >
-                    <TaskList tasks={tasks} />
-                </div>
-            </div>
+                    <TaskList deleteTask={deleteTask} tasks={tasks}  />
             
         </div>
     )

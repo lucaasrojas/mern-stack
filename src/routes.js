@@ -17,6 +17,13 @@ router.get('/api/tasks/:id', async (req, res) => {
     })
 })
 
+router.delete('/api/tasks/:id', async (req, res) => {
+    const response = await Task.findByIdAndRemove(req.params.id);
+    res.json({
+        response
+    })
+})
+
 router.post('/api/tasks', async (req, res) => {
     const { title, description } = req.body;
     await new Task({title, description}).save();

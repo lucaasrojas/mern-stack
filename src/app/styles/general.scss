@@ -1,9 +1,150 @@
+:root {
+    --primary-color: #a3543d;
+    --secondary-color: #f7d1ba;
+    --base-color: #f4eeed;
+    --contrast-color: #999b8a;
+}
+
 html, body {
     padding: 0px;
     margin: 0px;
+    background-color: var(--base-color);
+    color: var(--primary-color);
 }
 
-.footer_wrapper, .mainpage_wrapper {
+.main_wrapper{
     display: grid;
-    grid-template-columns: auto minmax(790px, 1170px) auto;
+    grid-template-columns: auto minmax(785px, 1280px) auto;
+    grid-template-rows: 65px auto 80px;
+    height: 100vh;
+    row-gap: 30px;
+    & > * {
+        grid-column: 2;
+    }
+}
+
+.footer_wrapper, .navbar_wrapper{
+    background-color: var(--secondary-color);
+}
+
+.navbar_wrapper{
+    grid-row: 1
+}
+
+.footer_wrapper{
+    grid-row: 3;
+}
+
+.mainpage_wrapper{
+    display: grid;
+    grid-template-columns: 40% auto;
+
+    .task_list{
+        div {
+            display: grid;
+            grid-template-columns: 50px auto;
+            padding: 10px;
+
+            span {
+                border: 2px solid var(--primary-color);
+                grid-column: 1;
+                border-radius: 2px;
+                text-align: center;
+                padding: 5px;
+                cursor: pointer;
+
+            }
+
+            span:hover{
+                @extend .hover_effect;
+            }
+            p {
+                text-align: center;
+            }
+
+            span, p {
+                margin: 10px;
+            }
+        }
+
+    }
+
+    .form_wrapper{
+        width: 50%;
+        margin-left: auto;
+        overflow: hidden;
+        .button_wrapper {
+            display: flex;
+            justify-content: center;
+            button {
+                width: 100px;
+                padding: 2px;
+                border-radius: 30px;
+                background-color: transparent;
+                border: 1px solid var(--primary-color);
+                color: var(--primary-color);
+                cursor: pointer;
+            }
+
+            button:hover{
+                @extend .hover_effect;
+            }
+        }
+        
+    }
+
+    .form_input{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        margin: 20px 0px;
+
+        input {
+            
+            width: 100%;
+            height: 100%;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            padding-top: 20px;
+            outline: none
+        }
+
+        label{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        label::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 1;
+            height: 100%;
+            width: 100%;
+            border-bottom: 3px solid var(--contrast-color);
+            transform: translate(-100%);
+            transition: 0.3s;
+        }
+
+        input:focus + label::after {
+            transform: translate(0%);
+        }
+
+        
+    }
+
+
+}
+
+.hover_effect{
+    background-color: var(--primary-color);
+    color: var(--base-color);
+    transition: 0.5s;
 }

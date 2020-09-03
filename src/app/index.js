@@ -11,12 +11,7 @@ class App extends Component {
     render() {
         return (
             <div
-                style={{
-                    display: 'grid',
-                    gridTemplateRows: '10vh auto 15vh',
-                    height: '100vh',
-                    width: '100vw'
-                }}
+                className={'main_wrapper'}
             >
                 <Navbar
                     style={{
